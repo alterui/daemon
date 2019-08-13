@@ -1,5 +1,6 @@
 package com.oyo.daemon;
 
+import java.io.IOException;
 import java.net.Socket;
 
 /**
@@ -16,12 +17,22 @@ public class ServerImpl implements Runnable {
         try {
 
             while (true) {
-                socket.sendUrgentData(0xFF); // 发送心跳包
+                // 发送心跳包
+                socket.sendUrgentData(0xFF);
                 System.out.println("目前主进程处于连接状态！");
-                Thread.sleep(1 * 1000);//线程睡眠30秒
+                Thread.sleep(1 * 1000);
             }
-        } catch (Exception e) {
-            System.out.println("客户端主进程失去响应！！");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e){
+            System.out.println("客户端主进程失去响应！！需要重启客户端");
+            // todo
+            /**
+             * 重启客户端主进程
+             */
+
+
+
         }
     }
 }

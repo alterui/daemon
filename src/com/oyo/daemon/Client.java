@@ -15,14 +15,14 @@ public class Client {
             socket.setSoTimeout(10);
             int index = 1;
             while (true) {
-                // 10秒后中断连接
-                if (index > 100) {
+                // 模拟客户端中断
+                if (index > 10) {
                     socket.close();
-                    System.out.println("客户端关闭！");
+                    System.out.println("客户端已关闭！");
                     break;
                 }
                 index++;
-                Thread.sleep(1 * 1000);//程序睡眠1秒钟
+                Thread.sleep(1 * 1000);
 
             }
         } catch (Exception e) {
